@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SkillEx · Campus Freelancing & Peer Collaboration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Closed campus freelancing network for verified college students. Match skills, collaborate on campus projects, and build verifiable proof of work.">
+  <meta name="theme-color" content="#3B3FD8">
+  
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="SkillEx · Campus Freelancing & Peer Collaboration">
+  <meta property="og:description" content="Closed campus freelancing network for verified college students. Match skills, collaborate, and earn.">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon Data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%233B3FD8'/><text x='50' y='68' font-size='55' font-weight='800' font-family='sans-serif' fill='white' text-anchor='middle'>S</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#3B3FD8',
+              hover: '#2F33B8',
+              soft: '#ECEDFC'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- SkillEx Design System Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toast" role="status"></div>
+
+  <dialog id="dlg">
+    <h3 id="dt"></h3>
+    <p id="dp" class="mut"></p>
+    <div class="row" style="justify-content:flex-end;margin-top:14px">
+      <button class="btn" onclick="dlg.close()">Cancel</button>
+      <button class="btn p" id="dok">Confirm</button>
+    </div>
+  </dialog>
+
+  <!-- Profile Edit Dialog -->
+  <dialog id="profileDlg" style="max-width:480px;width:92vw;border-radius:18px">
+    <div class="row between">
+      <h3 style="margin:0">Edit Campus Profile</h3>
+      <button class="btn s" onclick="profileDlg.close()" style="border:none;background:transparent;font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <p class="mut" style="margin:4px 0 14px">Update your bio, department, skills, and project availability.</p>
+    
+    <label>Department</label>
+    <select id="edit_prof_dept">
+      <option value="CSE">Computer Science & Engineering</option>
+      <option value="IT">Information Technology</option>
+      <option value="ENTC">Electronics & Telecommunication</option>
+      <option value="Mechanical">Mechanical Engineering</option>
+      <option value="Civil">Civil Engineering</option>
+    </select>
+    
+    <label>Academic Year</label>
+    <select id="edit_prof_year">
+      <option value="1st year">1st year</option>
+      <option value="2nd year">2nd year</option>
+      <option value="3rd year">3rd year</option>
+      <option value="4th year">4th year</option>
+    </select>
+    
+    <label>Bio & Campus Experience</label>
+    <textarea id="edit_prof_bio" rows="3" placeholder="Tell batchmates about your skills and interests..."></textarea>
+    
+    <label>Top Skills (comma separated)</label>
+    <input id="edit_prof_skills" placeholder="e.g. React, Python, UI/UX, Video Editing">
+    
+    <label class="row" style="margin-top:14px;font-weight:600;cursor:pointer">
+      <input type="checkbox" id="edit_prof_avail" style="width:18px;height:18px;accent-color:var(--pri)">
+      <span>Currently available for campus projects</span>
+    </label>
+    
+    <div class="row" style="justify-content:flex-end;gap:10px;margin-top:20px">
+      <button class="btn" onclick="profileDlg.close()">Cancel</button>
+      <button class="btn p" id="saveProfBtn" onclick="doSaveProfile()">Save Profile</button>
+    </div>
+  </dialog>
+
+  <script src="js/api.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
+</body>
+</html>
